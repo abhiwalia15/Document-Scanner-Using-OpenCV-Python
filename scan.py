@@ -30,8 +30,8 @@ edged = cv2.Canny(gray, 75, 200)
 
 # show the original image and the edge detected image
 print("STEP 1: Edge Detection")
-#cv2.imshow("Image", image)
-#cv2.imshow("Edged", edged)
+cv2.imshow("Image", image)
+cv2.imshow("Edged", edged)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 
@@ -56,7 +56,7 @@ for c in cnts:
 # show the contour (outline) of the piece of paper
 print("STEP 2: Find contours of paper")
 cv2.drawContours(image, [screenCnt], -1, (0, 255, 0), 2)
-#cv2.imshow("Outline", image)
+cv2.imshow("Outline", image)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 
