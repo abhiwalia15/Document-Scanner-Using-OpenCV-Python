@@ -87,3 +87,8 @@ imS = cv2.resize(warped, (1150, 650))
 cv2.imshow("output",imS)
 cv2.imwrite('output/'+'Output Image.PNG', imS)
 cv2.waitKey(0)
+
+pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files (x86)/Tesseract-OCR/tesseract'
+TESSDATA_PREFIX = 'C:/Program Files (x86)/Tesseract-OCR'
+output = pytesseract.image_to_string(PIL.Image.open('Output Image.PNG').convert("RGB"), lang='eng')
+print(output)
