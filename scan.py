@@ -95,7 +95,7 @@ print(output)
 
 f = open('email.txt','w')
 f.write(output)
-#f.close()
+f.close()
 
 '''
 f = open('email.txt','r')
