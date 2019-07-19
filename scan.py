@@ -85,13 +85,13 @@ print("STEP 3: Apply perspective transform")
 
 imS = cv2.resize(warped, (1350,1150 ))
 cv2.imshow("output",imS)
-cv2.imwrite('output/'+'Output Image.PNG', imS)
+cv2.imwrite('out/'+'Output Image.PNG', imS)
 cv2.waitKey(0)
 
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 TESSDATA_PREFIX = 'C:/Program Files /Tesseract-OCR'
-output = pytesseract.image_to_string(PIL.Image.open('output/'+ 'Output Image.PNG').convert("RGB"), lang='eng')
-print(output)
+output = pytesseract.image_to_string(PIL.Image.open('out/'+ 'Output Image.PNG').convert("RGB"), lang='eng')
+#print(output)
   
 '''
 img = cv2.imread("Output Image.PNG", 0)
@@ -101,3 +101,27 @@ cv2.imwrite("./output_image.png", thresh)
 #cv2.imshow('scanned num', thresh)
 #cv2.waitKey(0)
 '''
+'''
+from uuid import uuid4
+import os
+
+folder_name = 'chaap'
+os.makedirs(folder_name)
+with open('./{fn}/output.txt'.format(fn=folder_name),'wb') as f:
+    f.write(image_to_string(output))'''
+'''
+import os
+
+im = Image.open('out/'+ 'Output Image.PNG')
+txt=pytesseract.image_to_string(im)
+print(txt)
+	
+directory = os.path.join("out")
+for root,dirs,files in os.walk(directory):
+	for file in files:
+		if file.endswith(".PNG"):
+			 pre_fix=file[:-4]
+			 txt=ocr(file)
+			 with open(directory+"\\"+pre_fix+".txt",'w') as f: f.write(str(txt))
+'''
+
