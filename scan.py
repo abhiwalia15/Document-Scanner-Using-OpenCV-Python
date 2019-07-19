@@ -9,6 +9,13 @@ import argparse
 import cv2
 import imutils
 
+from PIL import Image
+import PIL.Image
+
+from pytesseract import image_to_string
+import pytesseract
+
+
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--image", required = True,
