@@ -14,7 +14,7 @@ import PIL.Image
 
 from pytesseract import image_to_string
 import pytesseract
-
+import re
 
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
@@ -91,37 +91,20 @@ cv2.waitKey(0)
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 TESSDATA_PREFIX = 'C:/Program Files /Tesseract-OCR'
 output = pytesseract.image_to_string(PIL.Image.open('out/'+ 'Output Image.PNG').convert("RGB"), lang='eng')
-#print(output)
-  
-'''
-img = cv2.imread("Output Image.PNG", 0)
-ret, thresh = cv2.threshold(img, 10, 255, cv2.THRESH_OTSU)
-print("Threshold selected : ", ret)
-cv2.imwrite("./output_image.png", thresh)
-#cv2.imshow('scanned num', thresh)
-#cv2.waitKey(0)
-'''
-'''
-from uuid import uuid4
-import os
+print(output)
 
-folder_name = 'chaap'
-os.makedirs(folder_name)
-with open('./{fn}/output.txt'.format(fn=folder_name),'wb') as f:
-    f.write(image_to_string(output))'''
-'''
-import os
+f = open('email.txt','w')
+f.write(output)
+#f.close()
 
-im = Image.open('out/'+ 'Output Image.PNG')
-txt=pytesseract.image_to_string(im)
-print(txt)
-	
-directory = os.path.join("out")
-for root,dirs,files in os.walk(directory):
-	for file in files:
-		if file.endswith(".PNG"):
-			 pre_fix=file[:-4]
-			 txt=ocr(file)
-			 with open(directory+"\\"+pre_fix+".txt",'w') as f: f.write(str(txt))
 '''
+f = open('email.txt','r')
+contents =f.read()
 
+for o in contents.split(' '):
+    # print(o)
+    match = re.match('^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$', o)
+    if match != None:
+	    print('EMAIL:' + o)
+print(output)
+'''
