@@ -83,12 +83,21 @@ print("STEP 3: Apply perspective transform")
 #cv2.imshow("Scanned", imutils.resize(warped, height = 650))
 #cv2.waitKey(0)
 
-imS = cv2.resize(warped, (1150, 650))
+imS = cv2.resize(warped, (1350,1150 ))
 cv2.imshow("output",imS)
 cv2.imwrite('output/'+'Output Image.PNG', imS)
 cv2.waitKey(0)
 
-pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files (x86)/Tesseract-OCR/tesseract'
-TESSDATA_PREFIX = 'C:/Program Files (x86)/Tesseract-OCR'
-output = pytesseract.image_to_string(PIL.Image.open('Output Image.PNG').convert("RGB"), lang='eng')
+pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+TESSDATA_PREFIX = 'C:/Program Files /Tesseract-OCR'
+output = pytesseract.image_to_string(PIL.Image.open('output/'+ 'Output Image.PNG').convert("RGB"), lang='eng')
 print(output)
+
+'''
+img = cv2.imread("Output Image.PNG", 0)
+ret, thresh = cv2.threshold(img, 10, 255, cv2.THRESH_OTSU)
+print("Threshold selected : ", ret)
+cv2.imwrite("./output_image.png", thresh)
+#cv2.imshow('scanned num', thresh)
+#cv2.waitKey(0)
+'''
