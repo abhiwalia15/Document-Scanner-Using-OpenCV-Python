@@ -92,7 +92,7 @@ pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tessera
 TESSDATA_PREFIX = 'C:/Program Files /Tesseract-OCR'
 output = pytesseract.image_to_string(PIL.Image.open('output/'+ 'Output Image.PNG').convert("RGB"), lang='eng')
 print(output)
-
+  
 '''
 img = cv2.imread("Output Image.PNG", 0)
 ret, thresh = cv2.threshold(img, 10, 255, cv2.THRESH_OTSU)
