@@ -1,6 +1,6 @@
 import re
 
-f = open('email.txt','r')
+f = open('email.json','r')
 contents =f.read()
 
 for o in contents.split(' '):

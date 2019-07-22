@@ -93,7 +93,7 @@ TESSDATA_PREFIX = 'C:/Program Files /Tesseract-OCR'
 output = pytesseract.image_to_string(PIL.Image.open('out/'+ 'Output Image.PNG').convert("RGB"), lang='eng')
 #print(output)
 
-f = open('email.txt','w')
+f = open('email.json','w')
 f.write(output)
 f.close()
 
@@ -102,7 +102,7 @@ import re
 emails = re.findall(r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+", output)
 for email in emails:
 	print('EMAIL :-> ' + email)
-	F = open('emails.txt','w+')
+	F = open('emails.json','a+')
 	F.write(email)
 
 
