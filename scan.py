@@ -36,7 +36,7 @@ gray = cv2.GaussianBlur(gray, (5, 5), 0)
 edged = cv2.Canny(gray, 75, 200)
 
 # show the original image and the edge detected image
-print("STEP 1: Edge Detection")
+#print("STEP 1: Edge Detection")
 #cv2.imshow("Image", image)
 #cv2.imshow("Edged", edged)
 #cv2.waitKey(0)
@@ -61,7 +61,7 @@ for c in cnts:
 		break
 
 # show the contour (outline) of the piece of paper
-print("STEP 2: Find contours of paper")
+#print("STEP 2: Find contours of paper")
 cv2.drawContours(image, [screenCnt], -1, (0, 255, 0), 2)
 #cv2.imshow("Outline", image)
 #cv2.waitKey(0)
@@ -78,7 +78,7 @@ T = threshold_local(warped, 11, offset = 10, method = "gaussian")
 warped = (warped > T).astype("uint8") * 255
 
 # show the original and scanned images
-print("STEP 3: Apply perspective transform")
+#print("STEP 3: Apply perspective transform")
 #cv2.imshow("Original", imutils.resize(orig, height = 650))
 #cv2.imshow("Scanned", imutils.resize(warped, height = 650))
 #cv2.waitKey(0)
@@ -91,11 +91,20 @@ cv2.waitKey(0)
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 TESSDATA_PREFIX = 'C:/Program Files /Tesseract-OCR'
 output = pytesseract.image_to_string(PIL.Image.open('out/'+ 'Output Image.PNG').convert("RGB"), lang='eng')
-print(output)
+#print(output)
 
 f = open('email.txt','w')
 f.write(output)
 f.close()
+
+import re
+
+emails = re.findall(r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+", output)
+for email in emails:
+	print('EMAIL :-> ' + email)
+	F = open('emails.txt','w+')
+	F.write(email)
+
 
 '''
 f = open('email.txt','r')
