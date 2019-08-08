@@ -83,13 +83,13 @@ warped = (warped > T).astype("uint8") * 255
 #cv2.imshow("Scanned", imutils.resize(warped, height = 650))
 #cv2.waitKey(0)
 
-imS = cv2.resize(warped, (1350,1150 ))
+imS = cv2.resize(warped, (650, 650 ))
 cv2.imshow("output",imS)
 cv2.imwrite('out/'+'Output Image.PNG', imS)
 cv2.waitKey(0)
 
-pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
-TESSDATA_PREFIX = 'C:/Program Files /Tesseract-OCR'
+#pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+#TESSDATA_PREFIX = 'C:/Program Files /Tesseract-OCR'
 output = pytesseract.image_to_string(PIL.Image.open('out/'+ 'Output Image.PNG').convert("RGB"), lang='eng')
 #print(output)
 
@@ -100,11 +100,20 @@ f.close()
 import re
 
 emails = re.findall(r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+", output)
+numbers = re.findall(r'[\+\(]?[1-9][0-9 .\-\(\)]{8,}[0-9]', output)
+
+print(numbers)
+print(emails)
+
 for email in emails:
 	print('EMAIL :-> ' + email)
 	F = open('emails.json','a+')
 	F.write(email)
 
+for number in numbers:
+	print('Phone No. :-> ' + number)
+	F = open('emails.json', 'a+')
+	F.write(number)
 
 '''
 f = open('email.txt','r')
