@@ -37,7 +37,7 @@ edged = cv2.Canny(gray, 75, 200)
 
 # show the original image and the edge detected image
 #print("STEP 1: Edge Detection")
-#cv2.imshow("Image", image)
+cv2.imshow("Image", image)
 cv2.imshow("Edged", edged)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
@@ -79,7 +79,7 @@ warped = (warped > T).astype("uint8") * 255
 
 # show the original and scanned images
 #print("STEP 3: Apply perspective transform")
-#cv2.imshow("Original", imutils.resize(orig, height = 650))
+cv2.imshow("Original", imutils.resize(orig, height = 650))
 #cv2.imshow("Scanned", imutils.resize(warped, height = 650))
 #cv2.waitKey(0)
 
